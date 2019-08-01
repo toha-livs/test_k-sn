@@ -33,7 +33,7 @@ class PayService:
 
     @property
     def sign(self):
-        return generate_sign(self.tr, self.post_data['amount'], rub=False)
+        return generate_sign(self.tr)
 
 
 class PiastrixService(PayService):
@@ -75,6 +75,9 @@ class PiastrixService(PayService):
     def redirect_url(self):
         return self.response_data['data']['url']
 
+    @property
+    def sign(self):
+        return generate_sign(self.tr, usd=True)
 
 class PayeerService(PiastrixService):
     tmp = {}
@@ -104,4 +107,4 @@ class PayeerService(PiastrixService):
 
     @property
     def sign(self):
-        return generate_sign(self.tr, self.post_data['amount'], rub=True)
+        return generate_sign(self.tr, payeer_rub=True)
