@@ -1,0 +1,10 @@
+<form name="Pay" method="post" action="https://pay.piastrix.com/ru/pay" accept-charset="UTF-8">
+    <input type="hidden" name="amount" value="{{ transaction.tr.amount }}"/>
+        <div>{{ transaction.tr.amount }}</div>
+    <input type="hidden" name="currency" value="{{ transaction.tr.currency }}"/>
+    <input type="hidden" name="shop_id" value="5"/>
+    <input type="hidden" name="sign"
+           value="{{ transaction.sign }}"/>
+    <input type="hidden" name="shop_order_id" value="{{ transaction.tr.id }}"/>
+    <input type="submit" input type="hidden" name="description" value="{% if transaction.tr.description %} {{ transaction.tr.description }}{% else %} test {% endif %}"/>
+</form>
